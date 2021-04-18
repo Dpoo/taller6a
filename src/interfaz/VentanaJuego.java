@@ -37,13 +37,14 @@ public class VentanaJuego extends JFrame{
 
 
 	public VentanaJuego() {
-		
+		setTitle("LightsOut");
 		setSize(700, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panelOpciones = new PanelOpciones(this); 
-		panelMarcador = new PanelMarcador();
-		panelTablero = new PanelTablero(tamanio);
-		panelBotones = new PanelBotones();
+
+		panelMarcador = new PanelMarcador(this);  
+		panelTablero = new PanelTablero();
+		panelBotones = new PanelBotones(this);
 		  
 		 setLayout(new BorderLayout());
 		 
