@@ -140,16 +140,14 @@ public class Tablero
 	 */
 	public void jugar(int fila, int columna)
 	{
-		tablero[fila][columna] = !tablero[fila][columna];
 		int tam = tablero.length;
-
 		for (int df = -1; df < 2; df++)
 		{
 			for (int dc = -1; dc < 2; dc++)
 			{
 				int f = fila + df;
 				int c = columna + dc;
-				if (f >= 0 && f < tam && c >= 0 && c < tam)
+				if (f >= 0 && f < tam && c >= 0 && c < tam && dc*dc + df*df < 2 )
 				{
 					tablero[f][c] = !tablero[f][c];
 				}

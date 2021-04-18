@@ -35,6 +35,11 @@ public class VentanaJuego extends JFrame{
 			System.out.print("nuevo: " + this.tamanio + "\n");
 		}
 
+		public void Jugar(int i, int j){
+			tablero.jugar(i,j);
+			panelTablero.actulizarPanel(tablero);
+		}
+
 
 	public VentanaJuego() {
 		setTitle("LightsOut");
@@ -43,7 +48,7 @@ public class VentanaJuego extends JFrame{
 		panelOpciones = new PanelOpciones(this); 
 
 		panelMarcador = new PanelMarcador(this);  
-		panelTablero = new PanelTablero();
+		panelTablero = new PanelTablero(this);
 		panelBotones = new PanelBotones(this);
 		  
 		 setLayout(new BorderLayout());
@@ -60,8 +65,11 @@ public class VentanaJuego extends JFrame{
 
 		setVisible(true);
 	}
-	
-	
+
+	public Tablero getTablero() {
+		return tablero;
+	}
+
 	public static void main(String[] args) {
 		FlatLightLaf.install();
 		new VentanaJuego();
