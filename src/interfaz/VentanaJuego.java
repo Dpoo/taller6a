@@ -75,5 +75,19 @@ public class VentanaJuego extends JFrame{
 		new VentanaJuego();
 	}
 
+		public void nuevoJuego() {
+		System.out.print("Nuevo juego");
+	}
 
+
+	public void reiniciarJuego() {
+		tablero.reiniciar();
+		System.out.print("Reiniciar juego");
+	}
+
+
+	public void top10() {
+		
+		System.out.print("Top 10");
+	}
 }
