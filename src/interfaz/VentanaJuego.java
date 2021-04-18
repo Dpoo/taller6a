@@ -13,16 +13,26 @@ public class VentanaJuego extends JFrame{
 	 private PanelMarcador panelMarcador; 
 	 private PanelTablero panelTablero;
 	 private PanelBotones panelBotones;
+	 
 	 private Tablero tablero = new Tablero(5);
+	 private Tablero tableroOriginal;
+	 private int tamanio = 5;
+	 private int dificultad = 0;
 	
 	
 		public void establecerDificultad(int i) {
-			tablero.desordenar(i);
+			System.out.print("actual: " + this.dificultad + "\n");
+			this.dificultad = i;
+			System.out.print("nuevo: " + this.dificultad + "\n");
 		}	
 		
 		
 		public void establecerTamanio(int i) {
-			tablero = new Tablero(i);
+			System.out.print("actual: " + this.tamanio + "\n");
+			this.tamanio = i;
+			tablero = new Tablero(tamanio);
+//			panelTablero = new PanelTablero(tablero);
+			System.out.print("nuevo: " + this.tamanio + "\n");
 		}
 
 
@@ -31,8 +41,9 @@ public class VentanaJuego extends JFrame{
 		setSize(700, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panelOpciones = new PanelOpciones(this); 
+
 		panelMarcador = new PanelMarcador(this);  
-		panelTablero = new PanelTablero(5);
+		panelTablero = new PanelTablero();
 		panelBotones = new PanelBotones(this);
 		  
 		 setLayout(new BorderLayout());
