@@ -12,49 +12,49 @@ import java.util.ArrayList;
 public class PanelTablero extends JPanel implements ActionListener {
     private JButton[][] botones;
     private VentanaJuego ventana;
-    ImageIcon GatoOff = new ImageIcon("./data/gatoOff.png");
-    ImageIcon GatoON = new ImageIcon("./data/gatoON.png");
-
 
     public PanelTablero(VentanaJuego ventana){
-        setSize(600,600);
         this.ventana = ventana;
         Tablero tablero = ventana.getTablero();
-        nuevoPanel(tablero);
+       nuevoPanel(tablero);
     }
 
     public void nuevoPanel(Tablero tablero){
-        this.removeAll();
         boolean[][] tableroB = tablero.darTablero();
         int largo = tableroB.length;
         this.botones =  new JButton[largo][largo];
         GridLayout gl = new GridLayout(largo,largo);
         setLayout(gl);
-
-        for (int i = 0; i < largo; i++) {
-            for (int ii = 0; ii < largo; ii++) {
+        for (int i = 0; i < largo; i++)
+            for (int ii = 0; ii < largo; ii++)
+            {
                 JButton acB = new JButton();
                 acB.addActionListener(this);
-                acB.setActionCommand(i + "," + ii);
+                acB.setActionCommand(i+","+ii);
+                if (tableroB[i][ii]){
+                    acB.setText("Encendido");
+                    acB.setBackground(Color.BLACK);
+                }else{
+                    acB.setText("Apagado");
+                    acB.setBackground(Color.WHITE);
+                }
                 add(acB);
                 botones[i][ii] = acB;
             }
-        }
-        actulizarPanel(tablero);
+
     }
 
     public void actulizarPanel(Tablero tablero){
         boolean[][] tableroB = tablero.darTablero();
         int largo = tableroB.length;
-
         for (int i = 0; i < largo; i++) {
             for (int ii = 0; ii < largo; ii++) {
                 if (tableroB[i][ii]) {
-                    botones[i][ii].setIcon(new ImageIcon(GatoON.getImage().
-                            getScaledInstance((int)(ventana.getWidth()*0.8)/largo,(int)(ventana.getHeight()*0.8)/largo,Image.SCALE_DEFAULT)));
+                    botones[i][ii].setText("Encendido");
+                    botones[i][ii].setBackground(Color.WHITE);
                 } else {
-                    botones[i][ii].setIcon(new ImageIcon(GatoOff.getImage().
-                            getScaledInstance((int)(ventana.getWidth()*0.8)/largo,(int)(ventana.getHeight()*0.8)/largo,Image.SCALE_DEFAULT)));
+                    botones[i][ii].setText("Apagado");
+                    botones[i][ii].setBackground(Color.BLACK);
                 }
             }
         }
