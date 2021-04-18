@@ -15,9 +15,8 @@ public class VentanaJuego extends JFrame{
 	 private PanelBotones panelBotones;
 	 
 	 private Tablero tablero = new Tablero(5);
-	 private Tablero tableroOriginal;
 	 private int tamanio = 5;
-	 private int dificultad = 0;
+	 private int dificultad = 2;
 	
 	
 		public void establecerDificultad(int i) {
@@ -31,7 +30,6 @@ public class VentanaJuego extends JFrame{
 			System.out.print("actual: " + this.tamanio + "\n");
 			this.tamanio = i;
 			tablero = new Tablero(tamanio);
-//			panelTablero = new PanelTablero(tablero);
 			System.out.print("nuevo: " + this.tamanio + "\n");
 		}
 
@@ -77,11 +75,19 @@ public class VentanaJuego extends JFrame{
 
 		public void nuevoJuego() {
 		System.out.print("Nuevo juego");
+		tablero = new Tablero(tamanio);
+		tablero.desordenar(dificultad);
+		this.remove(panelTablero);
+		panelTablero = new PanelTablero(this);
+		add(panelTablero);
+		panelTablero.actulizarPanel(tablero);
 	}
 
 
 	public void reiniciarJuego() {
 		tablero.reiniciar();
+		panelTablero.actulizarPanel(tablero);
+		
 		System.out.print("Reiniciar juego");
 	}
 
