@@ -17,17 +17,21 @@ public class VentanaJuego extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panelOpciones = new PanelOpciones(); 
 		panelMarcador = new PanelMarcador(); 
-		panelTablero = new PanelTablero();
+		panelTablero = new PanelTablero(5);
 		panelBotones = new PanelBotones();
 		  
 		 setLayout(new BorderLayout());
 		  
 		 this.add(panelOpciones , BorderLayout.NORTH); 
 		 this.add(panelMarcador,BorderLayout.WEST);
-		 this.add(panelTablero,BorderLayout.EAST);
+		 this.add(panelTablero,BorderLayout.CENTER);
 		 this.add(panelBotones, BorderLayout.SOUTH);
-		 
-		
+
+		int panelX = (getWidth() - panelTablero.getWidth() - getInsets().left - getInsets().right) / 2;
+		int panelY = ((getHeight() - panelTablero.getHeight() - getInsets().top - getInsets().bottom) / 2);
+
+		panelTablero.setLocation(panelX, panelY);
+
 		setVisible(true);
 	}
 	
