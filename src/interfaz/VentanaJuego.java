@@ -15,9 +15,8 @@ public class VentanaJuego extends JFrame{
 	 private PanelBotones panelBotones;
 	 
 	 private Tablero tablero = new Tablero(5);
-	 private Tablero tableroOriginal;
 	 private int tamanio = 5;
-	 private int dificultad = 0;
+	 private int dificultad = 2;
 	
 	
 		public void establecerDificultad(int i) {
@@ -31,8 +30,12 @@ public class VentanaJuego extends JFrame{
 			System.out.print("actual: " + this.tamanio + "\n");
 			this.tamanio = i;
 			tablero = new Tablero(tamanio);
-//			panelTablero = new PanelTablero(tablero);
 			System.out.print("nuevo: " + this.tamanio + "\n");
+		}
+
+		public void Jugar(int i, int j){
+			tablero.jugar(i,j);
+			panelTablero.actulizarPanel(tablero);
 		}
 
 
@@ -43,7 +46,7 @@ public class VentanaJuego extends JFrame{
 		panelOpciones = new PanelOpciones(this); 
 
 		panelMarcador = new PanelMarcador(this);  
-		panelTablero = new PanelTablero();
+		panelTablero = new PanelTablero(this);
 		panelBotones = new PanelBotones(this);
 		  
 		 setLayout(new BorderLayout());
@@ -60,12 +63,37 @@ public class VentanaJuego extends JFrame{
 
 		setVisible(true);
 	}
-	
-	
+
+	public Tablero getTablero() {
+		return tablero;
+	}
+
 	public static void main(String[] args) {
 		FlatLightLaf.install();
 		new VentanaJuego();
 	}
 
+		public void nuevoJuego() {
+		System.out.print("Nuevo juego");
+		tablero = new Tablero(tamanio);
+		tablero.desordenar(dificultad);
+		this.remove(panelTablero);
+		panelTablero = new PanelTablero(this);
+		add(panelTablero);
+		panelTablero.actulizarPanel(tablero);
+	}
 
+
+	public void reiniciarJuego() {
+		tablero.reiniciar();
+		panelTablero.actulizarPanel(tablero);
+		
+		System.out.print("Reiniciar juego");
+	}
+
+
+	public void top10() {
+		
+		System.out.print("Top 10");
+	}
 }

@@ -20,8 +20,17 @@ public class PanelBotones extends JPanel implements ActionListener{
 		
 		juego=vjuego;
 		btnNuevo = new JButton("NUEVO");
+		btnNuevo.addActionListener(this);
+		btnNuevo.setActionCommand("NUEVO");
+		
 		btnReiniciar = new JButton("REINICIAR");
+		btnReiniciar.addActionListener(this);
+		btnReiniciar.setActionCommand("REINICIAR");
+		
 		btnTop = new JButton("TOP-10");
+		btnTop.addActionListener(this);
+		btnTop.setActionCommand("TOP");		
+		
 		FlowLayout fl = new FlowLayout();
 		add(btnNuevo);
 		add(btnReiniciar);
@@ -29,10 +38,17 @@ public class PanelBotones extends JPanel implements ActionListener{
 		
 	}
 
-
-	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		String accion = e.getActionCommand();
 		
+		if (accion.equals("NUEVO")) {
+			juego.nuevoJuego();
+		}
+		else if (accion.equals("REINICIAR")) {
+			juego.reiniciarJuego();	
+		}
+		else if (accion.equals("TOP")) {
+			juego.top10();
+		}
 	}
 }

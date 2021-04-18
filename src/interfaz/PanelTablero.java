@@ -1,5 +1,7 @@
 package interfaz;
 
+import uniandes.dpoo.taller6.modelo.Tablero;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,27 +10,54 @@ import java.util.ArrayList;
 
 
 public class PanelTablero extends JPanel implements ActionListener {
-    private int largo;
-    private ArrayList<ArrayList< JButton>> botones;
-    public PanelTablero(int largo){
-        this.largo = largo;
-        this.botones =  new ArrayList<>();
+    private JButton[][] botones;
+    private VentanaJuego ventana;
+
+    public PanelTablero(VentanaJuego ventana){
+        this.ventana = ventana;
+        Tablero tablero = ventana.getTablero();
+       nuevoPanel(tablero);
+    }
+
+    public void nuevoPanel(Tablero tablero){
+        boolean[][] tableroB = tablero.darTablero();
+        int largo = tableroB.length;
+        this.botones =  new JButton[largo][largo];
         GridLayout gl = new GridLayout(largo,largo);
         setLayout(gl);
+        for (int i = 0; i < largo; i++)
+            for (int ii = 0; ii < largo; ii++)
+            {
+                JButton acB = new JButton();
+                acB.addActionListener(this);
+                acB.setActionCommand(i+","+ii);
+                if (tableroB[i][ii]){
+                    acB.setText("Encendido");
+                    acB.setBackground(Color.BLACK);
+                }else{
+                    acB.setText("Apagado");
+                    acB.setBackground(Color.WHITE);
+                }
+                add(acB);
+                botones[i][ii] = acB;
+            }
 
-        for (int i = 0; i < this.largo; i++) {
-            ArrayList<JButton> acF = new ArrayList<>();
-            botones.add(acF);
-            for (int j = 0; j < this.largo; j++) {
-                JButton btn = new JButton("Apagado");
-                btn.addActionListener(this);
-                btn.setActionCommand(i +","+ j);
-                add(btn);
-                acF.add(btn);
+    }
+
+    public void actulizarPanel(Tablero tablero){
+        boolean[][] tableroB = tablero.darTablero();
+        int largo = tableroB.length;
+        for (int i = 0; i < largo; i++) {
+            for (int ii = 0; ii < largo; ii++) {
+                if (tableroB[i][ii]) {
+                    botones[i][ii].setText("Encendido");
+                    botones[i][ii].setBackground(Color.WHITE);
+                } else {
+                    botones[i][ii].setText("Apagado");
+                    botones[i][ii].setBackground(Color.BLACK);
+                }
             }
         }
-
-
     }
 
     @Override
@@ -36,21 +65,6 @@ public class PanelTablero extends JPanel implements ActionListener {
         String[] grito = e.getActionCommand().split(",");
         int i = Integer.parseInt(grito[0]);
         int j = Integer.parseInt(grito[1]);
-        System.out.println(i+","+j);
-        for (int dx = -1; dx < 2; dx++) {
-            if(dx + i >= 0 &  dx + i < largo){
-                for (int dy = -1; dy < 2; dy++) {
-                    if(dy + j >= 0 &  dy + j < largo & dy*dy +dx*dx <=1){
-                        JButton acb = botones.get(i+dx).get(j+dy);
-                        if(acb.getText().equals("Apagado")){
-                            acb.setText("Encendido");
-                        }else{
-                            acb.setText("Apagado");
-                        }
-
-                    }
-                }
-            }
-        }
+        ventana.Jugar(i,j);
     }
 }
