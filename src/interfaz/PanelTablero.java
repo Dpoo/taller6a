@@ -24,6 +24,7 @@ public class PanelTablero extends JPanel implements ActionListener {
     }
 
     public void nuevoPanel(Tablero tablero){
+        this.removeAll();
         boolean[][] tableroB = tablero.darTablero();
         int largo = tableroB.length;
         this.botones =  new JButton[largo][largo];
@@ -50,10 +51,10 @@ public class PanelTablero extends JPanel implements ActionListener {
             for (int ii = 0; ii < largo; ii++) {
                 if (tableroB[i][ii]) {
                     botones[i][ii].setIcon(new ImageIcon(GatoON.getImage().
-                            getScaledInstance(this.getHeight()/largo,this.getWidth()/largo,Image.SCALE_DEFAULT)));
+                            getScaledInstance((int)(ventana.getWidth()*0.8)/largo,(int)(ventana.getHeight()*0.8)/largo,Image.SCALE_DEFAULT)));
                 } else {
                     botones[i][ii].setIcon(new ImageIcon(GatoOff.getImage().
-                            getScaledInstance(this.getHeight()/largo,this.getWidth()/largo,Image.SCALE_DEFAULT)));
+                            getScaledInstance((int)(ventana.getWidth()*0.8)/largo,(int)(ventana.getHeight()*0.8)/largo,Image.SCALE_DEFAULT)));
                 }
             }
         }
