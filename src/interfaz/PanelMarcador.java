@@ -15,12 +15,11 @@ public class PanelMarcador extends JPanel{
 	private int conteo;
 
 	public PanelMarcador(VentanaJuego vjuego) {
-		
 		juego=vjuego;
 		jugadas = new JLabel("0");
 		setLayout (new BorderLayout());
 		add(jugadas,BorderLayout.CENTER);
-		
+
 	}
 
 	public void setJugadas(int conteo) {

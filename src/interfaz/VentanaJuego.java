@@ -81,13 +81,14 @@ public class VentanaJuego extends JFrame{
 		tablero = new Tablero(tamanio);
 		tablero.desordenar(dificultad);
 		panelTablero.nuevoPanel(tablero);
+		panelMarcador.setJugadas(0);
 	}
 
 
 	public void reiniciarJuego() {
 		tablero.reiniciar();
 		panelTablero.actulizarPanel(tablero);
-		
+		panelMarcador.setJugadas(0);
 		System.out.print("Reiniciar juego");
 	}
 
