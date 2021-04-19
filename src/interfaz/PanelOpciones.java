@@ -29,7 +29,7 @@ public class PanelOpciones extends JPanel implements ActionListener, ItemListene
 		Font font = new Font("Comic Sans MS", Font.BOLD,12);
 		
 		this.juego = juego;
-		label1 = new JLabel("Tama�o:");
+		label1 = new JLabel("Tamaño:");
 		label1.setForeground(new java.awt.Color(255, 255, 255));
 		label1.setFont(font);
 
@@ -46,7 +46,7 @@ public class PanelOpciones extends JPanel implements ActionListener, ItemListene
 
 		bg = new ButtonGroup();
 		
-		botonFacil = new JRadioButton("F�cil", true);
+		botonFacil = new JRadioButton("Facil", true);
 		botonFacil.setForeground(new java.awt.Color(255, 255, 255));
 		botonFacil.setFont(font);
 		botonFacil.addActionListener(this);        
@@ -58,7 +58,7 @@ public class PanelOpciones extends JPanel implements ActionListener, ItemListene
 		botonMedio.addActionListener(this);        
 		bg.add(botonMedio);
 		
-		botonDificil = new JRadioButton("Dif�cil");
+		botonDificil = new JRadioButton("Dificil");
 		botonDificil.setForeground(new java.awt.Color(255, 255, 255));
 		botonDificil.setFont(font);
 		botonDificil.addActionListener(this);        
@@ -79,15 +79,12 @@ public class PanelOpciones extends JPanel implements ActionListener, ItemListene
 	public void actionPerformed(ActionEvent e) {
 		if (botonFacil.isSelected()) {
 			juego.establecerDificultad(2);
-			System.out.print("Escogido = 0\n");
 		}
 		if (botonMedio.isSelected()) {
 			juego.establecerDificultad(10);
-			System.out.print("Escogido = 1\n");
 		}
 		if (botonDificil.isSelected()) {
 			juego.establecerDificultad(20);
-			System.out.print("Escogido = 2\n");
 		}
 	}
 
