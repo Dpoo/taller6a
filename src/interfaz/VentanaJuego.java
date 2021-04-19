@@ -53,7 +53,7 @@ public class VentanaJuego extends JFrame {
 		setVisible(true);
 	}
 
-	public void Jugar(int i, int j) throws FileNotFoundException, UnsupportedEncodingException {
+	public void Jugar(int i, int j) {
 		tablero.jugar(i, j);
 		panelTablero.actulizarPanel(tablero);
 		int conteo = tablero.darJugadas();
@@ -65,11 +65,11 @@ public class VentanaJuego extends JFrame {
 		}
 	}
 
-	public void comprobarTop(int punt) throws FileNotFoundException, UnsupportedEncodingException {
+	public void comprobarTop(int punt) {
 
 		if (top.esTop10(punt)) {
 			ventanaTop.setVisible(true);
-			this.puntaje = punt;
+			this.puntaje = punt; 
 		} else {
 			// decirle que se dedique a otra cosa
 		}
