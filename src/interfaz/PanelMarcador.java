@@ -17,7 +17,7 @@ public class PanelMarcador extends JPanel{
 	public PanelMarcador(VentanaJuego vjuego) {
 		
 		juego=vjuego;
-		conteo= juego.getJugadas();
+//		conteo= juego.getJugadas();
 		jugadas = new JLabel(Integer.toString(conteo));
 		setLayout (new BorderLayout());
 		add(jugadas,BorderLayout.CENTER);

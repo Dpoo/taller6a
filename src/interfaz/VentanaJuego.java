@@ -77,10 +77,7 @@ public class VentanaJuego extends JFrame{
 		System.out.print("Nuevo juego");
 		tablero = new Tablero(tamanio);
 		tablero.desordenar(dificultad);
-		this.remove(panelTablero);
-		panelTablero = new PanelTablero(this);
-		add(panelTablero);
-		panelTablero.actulizarPanel(tablero);
+		panelTablero.nuevoPanel(tablero);
 	}
 
 
