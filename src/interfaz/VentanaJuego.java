@@ -17,6 +17,7 @@ public class VentanaJuego extends JFrame {
 	private PanelMarcador panelMarcador;
 	private PanelTablero panelTablero;
 	private PanelBotones panelBotones;
+	private Top10ventana to10ventana;
 	private Tablero tablero;
 	private Top10 top;
 	private int tamanio = 5;
@@ -114,8 +115,7 @@ public class VentanaJuego extends JFrame {
 	}
 
 	public void top10() {
-
-		System.out.print("Top 10");
+		Top10ventana top10ventana = new Top10ventana(this, top);
 	}
 
 }
