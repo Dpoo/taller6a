@@ -10,19 +10,18 @@ import com.formdev.flatlaf.FlatLightLaf;
 
 import uniandes.dpoo.taller6.modelo.*;
 
-public class VentanaJuego extends JFrame{
+public class VentanaJuego extends JFrame {
 
-	 private PanelOpciones panelOpciones; 
-	 private PanelMarcador panelMarcador; 
-	 private PanelTablero panelTablero;
-	 private PanelBotones panelBotones;
-	 private Tablero tablero ;
-	 private Top10 top;
-	 private int tamanio = 5;
-	 private int dificultad = 2;
-
-
-
+	private VentanaTop ventanaTop;
+	private PanelOpciones panelOpciones;
+	private PanelMarcador panelMarcador;
+	private PanelTablero panelTablero;
+	private PanelBotones panelBotones;
+	private Tablero tablero;
+	private Top10 top;
+	private int tamanio = 5;
+	private int dificultad = 2;
+	private int puntaje;
 
 	public VentanaJuego() {
 		tablero = new Tablero(5);
@@ -30,20 +29,20 @@ public class VentanaJuego extends JFrame{
 		setTitle("LightsOut");
 		setSize(700, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setIconImage (new ImageIcon("./data/gatoON.png").getImage());
-		
-		panelOpciones = new PanelOpciones(this); 
+		setIconImage(new ImageIcon("./data/gatoON.png").getImage());
 
-		panelMarcador = new PanelMarcador(this);  
+		ventanaTop = new VentanaTop(this);
+		panelOpciones = new PanelOpciones(this);
+		panelMarcador = new PanelMarcador(this);
 		panelTablero = new PanelTablero(this);
 		panelBotones = new PanelBotones(this);
-		  
-		 setLayout(new BorderLayout());
-		 
-		 this.add(panelOpciones , BorderLayout.NORTH); 
-		 this.add(panelMarcador,BorderLayout.WEST);
-		 this.add(panelTablero,BorderLayout.CENTER);
-		 this.add(panelBotones, BorderLayout.SOUTH);
+
+		setLayout(new BorderLayout());
+
+		this.add(panelOpciones, BorderLayout.NORTH);
+		this.add(panelMarcador, BorderLayout.WEST);
+		this.add(panelTablero, BorderLayout.CENTER);
+		this.add(panelBotones, BorderLayout.SOUTH);
 
 		int panelX = (getWidth() - panelTablero.getWidth() - getInsets().left - getInsets().right) / 2;
 		int panelY = ((getHeight() - panelTablero.getHeight() - getInsets().top - getInsets().bottom) / 2);
@@ -53,26 +52,26 @@ public class VentanaJuego extends JFrame{
 
 		setVisible(true);
 	}
+
 	public void Jugar(int i, int j) throws FileNotFoundException, UnsupportedEncodingException {
-		tablero.jugar(i,j);
+		tablero.jugar(i, j);
 		panelTablero.actulizarPanel(tablero);
 		int conteo = tablero.darJugadas();
 		panelMarcador.setJugadas(conteo);
 		int puntaje = tablero.calcularPuntaje();
 
 		if (tablero.tableroIluminado()) {
-				agregarPuntuacion(puntaje);
+			comprobarTop(puntaje);
 		}
 	}
-	public void agregarPuntuacion(int punt) throws FileNotFoundException, UnsupportedEncodingException {
 
-		if(top.esTop10(punt)){
-			//cuadro de texto nombre
-			String nombre = "ggg";
-			top.agregarRegistro(nombre, punt);
-			top.salvarRecords(new File("data/top10.csv"));
-		}else{
-			//decirle que se dedique a otra cosa
+	public void comprobarTop(int punt) throws FileNotFoundException, UnsupportedEncodingException {
+
+		if (top.esTop10(punt)) {
+			ventanaTop.setVisible(true);
+			this.puntaje = punt;
+		} else {
+			// decirle que se dedique a otra cosa
 		}
 
 	}
@@ -80,7 +79,6 @@ public class VentanaJuego extends JFrame{
 	public void establecerDificultad(int i) {
 		this.dificultad = i;
 	}
-
 
 	public void establecerTamanio(int i) {
 		this.tamanio = i;
@@ -95,23 +93,29 @@ public class VentanaJuego extends JFrame{
 		new VentanaJuego();
 	}
 
-		public void nuevoJuego() {
+	public void nuevoJuego() {
 		tablero = new Tablero(tamanio);
 		tablero.desordenar(dificultad);
 		panelTablero.nuevoPanel(tablero);
 		panelMarcador.setJugadas(0);
 	}
 
-
 	public void reiniciarJuego() {
 		tablero.reiniciar();
 		panelTablero.actulizarPanel(tablero);
 		panelMarcador.setJugadas(0);
 	}
-
+	
+	public void agregarTop(String nombre) throws FileNotFoundException, UnsupportedEncodingException {
+		int punt = this.puntaje;
+		top.agregarRegistro(nombre, punt);
+		top.salvarRecords(new File("data/top10.csv"));
+		ventanaTop.setVisible(false);
+	}
 
 	public void top10() {
-		
+
 		System.out.print("Top 10");
 	}
+
 }
