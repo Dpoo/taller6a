@@ -29,7 +29,7 @@ public class PanelOpciones extends JPanel implements ActionListener, ItemListene
 		Font font = new Font("Comic Sans MS", Font.BOLD,12);
 		
 		this.juego = juego;
-		label1 = new JLabel("Tamaño:");
+		label1 = new JLabel("Tamaï¿½o:");
 		label1.setForeground(new java.awt.Color(255, 255, 255));
 		label1.setFont(font);
 
@@ -46,7 +46,7 @@ public class PanelOpciones extends JPanel implements ActionListener, ItemListene
 
 		bg = new ButtonGroup();
 		
-		botonFacil = new JRadioButton("Fácil", true);
+		botonFacil = new JRadioButton("Fï¿½cil", true);
 		botonFacil.setForeground(new java.awt.Color(255, 255, 255));
 		botonFacil.setFont(font);
 		botonFacil.addActionListener(this);        
@@ -58,7 +58,7 @@ public class PanelOpciones extends JPanel implements ActionListener, ItemListene
 		botonMedio.addActionListener(this);        
 		bg.add(botonMedio);
 		
-		botonDificil = new JRadioButton("Difícil");
+		botonDificil = new JRadioButton("Difï¿½cil");
 		botonDificil.setForeground(new java.awt.Color(255, 255, 255));
 		botonDificil.setFont(font);
 		botonDificil.addActionListener(this);        
