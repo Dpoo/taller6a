@@ -36,6 +36,9 @@ public class VentanaJuego extends JFrame{
 		public void Jugar(int i, int j){
 			tablero.jugar(i,j);
 			panelTablero.actulizarPanel(tablero);
+			int jugadas = tablero.darJugadas();
+			JLabel sumar = new JLabel(Integer.toString(jugadas));
+			panelMarcador.setJugadas(sumar);
 		}
 
 
