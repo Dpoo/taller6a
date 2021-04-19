@@ -20,17 +20,13 @@ public class VentanaJuego extends JFrame{
 	
 	
 		public void establecerDificultad(int i) {
-			System.out.print("actual: " + this.dificultad + "\n");
 			this.dificultad = i;
-			System.out.print("nuevo: " + this.dificultad + "\n");
 		}	
 		
 		
 		public void establecerTamanio(int i) {
-			System.out.print("actual: " + this.tamanio + "\n");
 			this.tamanio = i;
 			tablero = new Tablero(tamanio);
-			System.out.print("nuevo: " + this.tamanio + "\n");
 		}
 
 		public void Jugar(int i, int j){
@@ -77,7 +73,6 @@ public class VentanaJuego extends JFrame{
 	}
 
 		public void nuevoJuego() {
-		System.out.print("Nuevo juego");
 		tablero = new Tablero(tamanio);
 		tablero.desordenar(dificultad);
 		panelTablero.nuevoPanel(tablero);
@@ -89,7 +84,6 @@ public class VentanaJuego extends JFrame{
 		tablero.reiniciar();
 		panelTablero.actulizarPanel(tablero);
 		panelMarcador.setJugadas(0);
-		System.out.print("Reiniciar juego");
 	}
 
 
