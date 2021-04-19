@@ -48,7 +48,7 @@ public class VentanaJuego extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panelOpciones = new PanelOpciones(this); 
 
-		panelMarcador = new PanelMarcador(this);  
+		panelMarcador = new PanelMarcador(this); 
 		panelTablero = new PanelTablero(this);
 		panelBotones = new PanelBotones(this);
 		  
