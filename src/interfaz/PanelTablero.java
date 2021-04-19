@@ -52,11 +52,11 @@ public class PanelTablero extends JPanel implements ActionListener {
                 if (tableroB[i][ii]) {
                     botones[i][ii].setIcon(new ImageIcon(GatoON.getImage().
                             getScaledInstance((int)(ventana.getWidth()*0.8)/largo,(int)(ventana.getHeight()*0.8)/largo,Image.SCALE_DEFAULT)));
-                    botones[i][ii].setBackground(Color.WHITE);
+                    botones[i][ii].setBackground(new java.awt.Color(255, 239, 108));
                 } else {
                     botones[i][ii].setIcon(new ImageIcon(GatoOff.getImage().
                             getScaledInstance((int)(ventana.getWidth()*0.8)/largo,(int)(ventana.getHeight()*0.8)/largo,Image.SCALE_DEFAULT)));
-                    botones[i][ii].setBackground(Color.BLACK);
+                    botones[i][ii].setBackground(new java.awt.Color(39, 97, 128));
                 }
             }
         }
