@@ -82,7 +82,6 @@ public class VentanaJuego extends JFrame{
 
 	public void establecerTamanio(int i) {
 		this.tamanio = i;
-		tablero = new Tablero(tamanio);
 	}
 
 	public Tablero getTablero() {
