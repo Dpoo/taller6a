@@ -23,11 +23,8 @@ public class PanelMarcador extends JPanel{
 		
 	}
 
-	public void setJugadas(JLabel jugadas) {
-		removeAll();
-		this.jugadas = jugadas;
-		setLayout (new BorderLayout());
-		add(jugadas,BorderLayout.CENTER);
+	public void setJugadas(int conteo) {
+		jugadas.setText(String.valueOf(conteo));
 	}
 
 	

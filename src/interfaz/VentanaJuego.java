@@ -1,7 +1,7 @@
 package interfaz;
 
 import java.awt.BorderLayout;
-import javax.swing.JFrame;
+import javax.swing.*;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
@@ -37,8 +37,8 @@ public class VentanaJuego extends JFrame{
 			tablero.jugar(i,j);
 			panelTablero.actulizarPanel(tablero);
 			int jugadas = tablero.darJugadas();
-			JLabel sumar = new JLabel(Integer.toString(jugadas));
-			panelMarcador.setJugadas(sumar);
+			int conteo = tablero.darJugadas();
+			panelMarcador.setJugadas(conteo);
 		}
 
 
