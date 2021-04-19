@@ -95,8 +95,7 @@ public class PanelOpciones extends JPanel implements ActionListener, ItemListene
 	public void itemStateChanged(ItemEvent e) {
 		if (e.getSource()==menuTamanio) {
             String seleccionado = (String)menuTamanio.getSelectedItem();
-            String tamanio = seleccionado.substring(0, 1);
-            System.err.print("Escogido = " + tamanio + "\n");
+            String tamanio = seleccionado.split("x")[0];
             int tamanioInt = Integer.parseInt(tamanio);
             juego.establecerTamanio(Integer.valueOf(tamanioInt));
 		}
