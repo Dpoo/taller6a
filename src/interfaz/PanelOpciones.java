@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+@SuppressWarnings("serial")
 public class PanelOpciones extends JPanel implements ActionListener, ItemListener{
 	
 	private JLabel label1, label2;
@@ -28,13 +29,13 @@ public class PanelOpciones extends JPanel implements ActionListener, ItemListene
 		Font font = new Font("Comic Sans MS", Font.BOLD,12);
 		
 		this.juego = juego;
-		label1 = new JLabel("TamaÃ±o:");
+		label1 = new JLabel("Tamaño:");
 		label1.setForeground(new java.awt.Color(255, 255, 255));
 		label1.setFont(font);
 
 		
-		String[] tamaÃ±os = new String[] {"3x3", "4x4", "5x5", "6x6", "7x7", "8x8", "9x9", "10x10"};
-		menuTamanio = new JComboBox<>(tamaÃ±os);
+		String[] tamaños = new String[] {"3x3", "4x4", "5x5", "6x6", "7x7", "8x8", "9x9", "10x10"};
+		menuTamanio = new JComboBox<>(tamaños);
 		menuTamanio.setSelectedIndex(2);
 		menuTamanio.addItemListener(this);
 		menuTamanio.setFont(font);
@@ -45,7 +46,7 @@ public class PanelOpciones extends JPanel implements ActionListener, ItemListene
 
 		bg = new ButtonGroup();
 		
-		botonFacil = new JRadioButton("FÃ¡cil", true);
+		botonFacil = new JRadioButton("Fácil", true);
 		botonFacil.setForeground(new java.awt.Color(255, 255, 255));
 		botonFacil.setFont(font);
 		botonFacil.addActionListener(this);        
@@ -57,7 +58,7 @@ public class PanelOpciones extends JPanel implements ActionListener, ItemListene
 		botonMedio.addActionListener(this);        
 		bg.add(botonMedio);
 		
-		botonDificil = new JRadioButton("DifÃ­cil");
+		botonDificil = new JRadioButton("Difícil");
 		botonDificil.setForeground(new java.awt.Color(255, 255, 255));
 		botonDificil.setFont(font);
 		botonDificil.addActionListener(this);        
@@ -94,10 +95,9 @@ public class PanelOpciones extends JPanel implements ActionListener, ItemListene
 	public void itemStateChanged(ItemEvent e) {
 		if (e.getSource()==menuTamanio) {
             String seleccionado = (String)menuTamanio.getSelectedItem();
-            String tamanio = seleccionado.substring(0, 1);
-            System.err.print("Escogido = " + tamanio + "\n");
+            String tamanio = seleccionado.split("x")[0];
             int tamanioInt = Integer.parseInt(tamanio);
-            juego.establecerTamanio(tamanioInt);
+            juego.establecerTamanio(Integer.valueOf(tamanioInt));
 		}
 	}
 }
