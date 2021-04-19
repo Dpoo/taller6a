@@ -6,7 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 
 
 public class PanelTablero extends JPanel implements ActionListener {
@@ -67,6 +68,10 @@ public class PanelTablero extends JPanel implements ActionListener {
         String[] grito = e.getActionCommand().split(",");
         int i = Integer.parseInt(grito[0]);
         int j = Integer.parseInt(grito[1]);
-        ventana.Jugar(i,j);
+        try {
+            ventana.Jugar(i,j);
+        } catch (FileNotFoundException | UnsupportedEncodingException fileNotFoundException) {
+            fileNotFoundException.printStackTrace();
+        }
     }
 }

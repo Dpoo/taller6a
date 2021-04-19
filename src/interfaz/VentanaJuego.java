@@ -1,6 +1,9 @@
 package interfaz;
 
 import java.awt.BorderLayout;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import javax.swing.*;
 
 import com.formdev.flatlaf.FlatLightLaf;
@@ -13,31 +16,17 @@ public class VentanaJuego extends JFrame{
 	 private PanelMarcador panelMarcador; 
 	 private PanelTablero panelTablero;
 	 private PanelBotones panelBotones;
-	 
-	 private Tablero tablero = new Tablero(5);
+	 private Tablero tablero ;
+	 private Top10 top;
 	 private int tamanio = 5;
 	 private int dificultad = 2;
-	
-	
-		public void establecerDificultad(int i) {
-			this.dificultad = i;
-		}	
-		
-		
-		public void establecerTamanio(int i) {
-			this.tamanio = i;
-		}
 
-		public void Jugar(int i, int j){
-			tablero.jugar(i,j);
-			panelTablero.actulizarPanel(tablero);
-			int jugadas = tablero.darJugadas();
-			int conteo = tablero.darJugadas();
-			panelMarcador.setJugadas(conteo);
-		}
+
 
 
 	public VentanaJuego() {
+		tablero = new Tablero(5);
+		top = new Top10();
 		setTitle("LightsOut");
 		setSize(700, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,6 +50,39 @@ public class VentanaJuego extends JFrame{
 		nuevoJuego();
 
 		setVisible(true);
+	}
+	public void Jugar(int i, int j) throws FileNotFoundException, UnsupportedEncodingException {
+		tablero.jugar(i,j);
+		panelTablero.actulizarPanel(tablero);
+		int conteo = tablero.darJugadas();
+		panelMarcador.setJugadas(conteo);
+		int puntaje = tablero.calcularPuntaje();
+
+		if (tablero.tableroIluminado()) {
+				agregarPuntuacion(puntaje);
+		}
+	}
+	public void agregarPuntuacion(int punt) throws FileNotFoundException, UnsupportedEncodingException {
+
+		if(top.esTop10(punt)){
+			//cuadro de texto nombre
+			String nombre = "ggg";
+			top.agregarRegistro(nombre, punt);
+			top.salvarRecords(new File("data/top10.csv"));
+		}else{
+			//decirle que se dedique a otra cosa
+		}
+
+	}
+
+	public void establecerDificultad(int i) {
+		this.dificultad = i;
+	}
+
+
+	public void establecerTamanio(int i) {
+		this.tamanio = i;
+		tablero = new Tablero(tamanio);
 	}
 
 	public Tablero getTablero() {
