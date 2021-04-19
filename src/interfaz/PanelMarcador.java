@@ -1,7 +1,6 @@
 package interfaz;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.*;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,9 +14,13 @@ public class PanelMarcador extends JPanel{
 	private int conteo;
 
 	public PanelMarcador(VentanaJuego vjuego) {
+		setSize(100,100);
 		juego=vjuego;
 		jugadas = new JLabel("0");
+		jugadas.setFont(new Font("arial", Font.BOLD, 40));
+
 		setLayout (new BorderLayout());
+		add(new JLabel("        "));
 		add(jugadas,BorderLayout.CENTER);
 
 	}
