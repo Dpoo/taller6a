@@ -34,8 +34,8 @@ public class PanelOpciones extends JPanel implements ActionListener, ItemListene
 		label1.setFont(font);
 
 		
-		String[] tamaños = new String[] {"3x3", "4x4", "5x5", "6x6", "7x7", "8x8", "9x9", "10x10"};
-		menuTamanio = new JComboBox<>(tamaños);
+		String[] tamanios = new String[] {"3x3", "4x4", "5x5", "6x6", "7x7", "8x8", "9x9", "10x10"};
+		menuTamanio = new JComboBox<>(tamanios);
 		menuTamanio.setSelectedIndex(2);
 		menuTamanio.addItemListener(this);
 		menuTamanio.setFont(font);
