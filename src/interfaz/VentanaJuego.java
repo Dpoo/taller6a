@@ -33,6 +33,8 @@ public class VentanaJuego extends JFrame{
 		setTitle("LightsOut");
 		setSize(700, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setIconImage (new ImageIcon("./data/gatoON.png").getImage());
+		
 		panelOpciones = new PanelOpciones(this); 
 
 		panelMarcador = new PanelMarcador(this);  
