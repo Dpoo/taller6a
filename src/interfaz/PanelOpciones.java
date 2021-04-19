@@ -78,15 +78,15 @@ public class PanelOpciones extends JPanel implements ActionListener, ItemListene
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (botonFacil.isSelected()) {
-			juego.establecerDificultad(0);
+			juego.establecerDificultad(2);
 			System.out.print("Escogido = 0\n");
 		}
 		if (botonMedio.isSelected()) {
-			juego.establecerDificultad(1);
+			juego.establecerDificultad(10);
 			System.out.print("Escogido = 1\n");
 		}
 		if (botonDificil.isSelected()) {
-			juego.establecerDificultad(2);
+			juego.establecerDificultad(20);
 			System.out.print("Escogido = 2\n");
 		}
 	}
