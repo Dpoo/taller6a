@@ -1,6 +1,8 @@
 package interfaz;
 
 import java.awt.BorderLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
@@ -27,6 +29,7 @@ public class VentanaJuego extends JFrame{
 	public VentanaJuego() {
 		tablero = new Tablero(5);
 		top = new Top10();
+		top.cargarRecords(new File("data/top10.csv"));
 		setTitle("LightsOut");
 		setSize(700, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,15 +46,23 @@ public class VentanaJuego extends JFrame{
 		 this.add(panelTablero,BorderLayout.CENTER);
 		 this.add(panelBotones, BorderLayout.SOUTH);
 
-		int panelX = (getWidth() - panelTablero.getWidth() - getInsets().left - getInsets().right) / 2;
-		int panelY = ((getHeight() - panelTablero.getHeight() - getInsets().top - getInsets().bottom) / 2);
 
-		panelTablero.setLocation(panelX, panelY);
 		nuevoJuego();
 
+		addWindowListener(new WindowAdapter()
+		{
+			public void windowClosing(WindowEvent e)
+			{
+				try {
+					top.salvarRecords(new File("data/top10.csv"));
+				} catch (FileNotFoundException | UnsupportedEncodingException fileNotFoundException) {
+					fileNotFoundException.printStackTrace();
+				}
+			}
+		});
 		setVisible(true);
 	}
-	public void Jugar(int i, int j) throws FileNotFoundException, UnsupportedEncodingException {
+	public void Jugar(int i, int j)  {
 		tablero.jugar(i,j);
 		panelTablero.actulizarPanel(tablero);
 		int conteo = tablero.darJugadas();
@@ -62,13 +73,13 @@ public class VentanaJuego extends JFrame{
 				agregarPuntuacion(puntaje);
 		}
 	}
-	public void agregarPuntuacion(int punt) throws FileNotFoundException, UnsupportedEncodingException {
+	public void agregarPuntuacion(int punt) {
 
 		if(top.esTop10(punt)){
 			//cuadro de texto nombre
 			String nombre = "ggg";
 			top.agregarRegistro(nombre, punt);
-			top.salvarRecords(new File("data/top10.csv"));
+
 		}else{
 			//decirle que se dedique a otra cosa
 		}
@@ -106,6 +117,7 @@ public class VentanaJuego extends JFrame{
 		panelTablero.actulizarPanel(tablero);
 		panelMarcador.setJugadas(0);
 	}
+
 
 
 	public void top10() {

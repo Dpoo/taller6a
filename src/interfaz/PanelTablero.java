@@ -68,10 +68,7 @@ public class PanelTablero extends JPanel implements ActionListener {
         String[] grito = e.getActionCommand().split(",");
         int i = Integer.parseInt(grito[0]);
         int j = Integer.parseInt(grito[1]);
-        try {
-            ventana.Jugar(i,j);
-        } catch (FileNotFoundException | UnsupportedEncodingException fileNotFoundException) {
-            fileNotFoundException.printStackTrace();
-        }
+        ventana.Jugar(i, j);
+
     }
 }
