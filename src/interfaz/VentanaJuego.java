@@ -1,6 +1,8 @@
 package interfaz;
 
 import java.awt.BorderLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
@@ -51,7 +53,17 @@ public class VentanaJuego extends JFrame {
 
 		panelTablero.setLocation(panelX, panelY);
 		nuevoJuego();
-
+		addWindowListener(new WindowAdapter()
+		{
+			public void windowClosing(WindowEvent e)
+			{
+				try {
+					top.salvarRecords(new File("./data/top10.csv"));
+				} catch (FileNotFoundException | UnsupportedEncodingException fileNotFoundException) {
+					fileNotFoundException.printStackTrace();
+				}
+			}
+		});
 		setVisible(true);
 	}
 
@@ -111,7 +123,6 @@ public class VentanaJuego extends JFrame {
 	public void agregarTop(String nombre) throws FileNotFoundException, UnsupportedEncodingException {
 		int punt = this.puntaje;
 		top.agregarRegistro(nombre, punt);
-		top.salvarRecords(new File("data/top10.csv"));
 		ventanaTop.setVisible(false);
 	}
 
