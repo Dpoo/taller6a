@@ -17,6 +17,7 @@ public class VentanaJuego extends JFrame {
 	private PanelMarcador panelMarcador;
 	private PanelTablero panelTablero;
 	private PanelBotones panelBotones;
+	private Top10ventana to10ventana;
 	private Tablero tablero;
 	private Top10 top;
 	private int tamanio = 5;
@@ -26,6 +27,7 @@ public class VentanaJuego extends JFrame {
 	public VentanaJuego() {
 		tablero = new Tablero(5);
 		top = new Top10();
+		top.cargarRecords(new File("data/top10.csv"));
 		setTitle("LightsOut");
 		setSize(700, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -114,8 +116,7 @@ public class VentanaJuego extends JFrame {
 	}
 
 	public void top10() {
-
-		System.out.print("Top 10");
+		Top10ventana top10ventana = new Top10ventana(this, top);
 	}
 
 }
