@@ -58,7 +58,7 @@ public class VentanaJuego extends JFrame {
 			public void windowClosing(WindowEvent e)
 			{
 				try {
-					top.salvarRecords(new File("./data/top10.csv"));
+					top.salvarRecords(new File("data/top10.csv"));
 				} catch (FileNotFoundException | UnsupportedEncodingException fileNotFoundException) {
 					fileNotFoundException.printStackTrace();
 				}

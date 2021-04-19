@@ -17,11 +17,9 @@ public class PanelTablero extends JPanel implements ActionListener {
     ImageIcon GatoON = new ImageIcon("./data/gatoON.png");
 
 
-    public PanelTablero(VentanaJuego ventana){
-        setSize(600,600);
+    public PanelTablero(VentanaJuego ventana) {
+        setSize(600, 600);
         this.ventana = ventana;
-        Tablero tablero = ventana.getTablero();
-        nuevoPanel(tablero);
     }
 
     public void nuevoPanel(Tablero tablero){
@@ -45,6 +43,7 @@ public class PanelTablero extends JPanel implements ActionListener {
     }
 
     public void actulizarPanel(Tablero tablero){
+        System.out.println("actua");
         boolean[][] tableroB = tablero.darTablero();
         int largo = tableroB.length;
 
