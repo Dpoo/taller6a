@@ -59,6 +59,7 @@ public class VentanaJuego extends JFrame{
 		int panelY = ((getHeight() - panelTablero.getHeight() - getInsets().top - getInsets().bottom) / 2);
 
 		panelTablero.setLocation(panelX, panelY);
+		nuevoJuego();
 
 		setVisible(true);
 	}
